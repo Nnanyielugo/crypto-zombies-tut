@@ -50,4 +50,8 @@ contract ZombieFactory is Ownable {
     _createZombie(_name, randDna);
   }
 
+  function kill() public onlyOwner {
+    selfdestruct(owner());
+  }
+
 }
