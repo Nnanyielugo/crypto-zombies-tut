@@ -39,7 +39,7 @@ contract('CryptoZombies', (accounts) => {
         from: alice,
       });
       const newOwner = await contractInstance.ownerOf(zombieId);
-      assert.equal(newOwner, bob);
+      expect(newOwner).to.equal(bob);
     });
   });
 
@@ -52,7 +52,7 @@ contract('CryptoZombies', (accounts) => {
       await contractInstance.approve(bob, zombieId, { from: alice });
       await contractInstance.transferFrom(alice, bob, zombieId, { from: bob });
       const newOwner = await contractInstance.ownerOf(zombieId);
-      assert.equal(newOwner, bob);
+      expect(newOwner).to.equal(bob);
     });
     it('should approve and then transfer a zombie when the owner calls transferFrom', async () => {
       const result = await contractInstance.createRandomZombie(zombieNames[0], {
@@ -64,7 +64,7 @@ contract('CryptoZombies', (accounts) => {
         from: alice,
       });
       const newOwner = await contractInstance.ownerOf(zombieId);
-      assert.equal(newOwner, bob);
+      expect(newOwner).to.equal(bob);
     });
   });
   it('zombies should be able to attack another zombie', async () => {
@@ -82,6 +82,6 @@ contract('CryptoZombies', (accounts) => {
     await contractInstance.attack(firstZombieId, secondZombieId, {
       from: alice,
     });
-    assert.equal(result.receipt.status, true);
+    expect(result.receipt.status).to.equal(true);
   });
 });
